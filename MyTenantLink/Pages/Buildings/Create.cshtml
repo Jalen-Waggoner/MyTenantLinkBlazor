@@ -1,0 +1,57 @@
+﻿@page
+@model MyTenantLink.Pages.Buildings.CreateModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create Building</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Building.CustomerId" class="control-label">Customer</label>
+                <select asp-for="Building.CustomerId" class ="form-control" asp-items="ViewBag.CustomerId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="Building.BuildingCode" class="control-label"></label>
+                <input asp-for="Building.BuildingCode" class="form-control" />
+                <span asp-validation-for="Building.BuildingCode" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Building.Street" class="control-label"></label>
+                <input asp-for="Building.Street" class="form-control" />
+                <span asp-validation-for="Building.Street" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Building.City" class="control-label"></label>
+                <input asp-for="Building.City" class="form-control" />
+                <span asp-validation-for="Building.City" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Building.State" class="control-label"></label>
+                <select asp-for="Building.State" class="form-control"  asp-items="ViewBag.States"></select>
+                <span asp-validation-for="Building.State" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Building.Zip" class="control-label"></label>
+                <input asp-for="Building.Zip" class="form-control" />
+                <span asp-validation-for="Building.Zip" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary mt-3" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

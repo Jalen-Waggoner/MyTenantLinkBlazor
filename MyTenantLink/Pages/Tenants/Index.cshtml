@@ -1,0 +1,53 @@
+﻿@page
+@model MyTenantLink.Pages.Tenants.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Tenants</h1>
+
+<p>
+    <a class="btn btn-sm btn-success"asp-page="Create">Create New Tenant</a>
+</p>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Tenant[0].Customer)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Tenant[0].FirstName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Tenant[0].LastName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Tenant[0].Email)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Tenant) {
+        <tr>
+            <td>
+                <a asp-page="/Customers/Details" asp-route-id="@item.Customer.Id">@Html.DisplayFor(modelItem => item.Customer.Name)</a>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LastName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                <a class="btn btn-sm btn-primary"asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
+                <a class="btn btn-sm btn-outline-danger"asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>

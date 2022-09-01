@@ -1,0 +1,53 @@
+﻿@page
+@model MyTenantLink.Pages.Units.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Units</h1>
+
+<p>
+    <a class="btn btn-sm btn-success"asp-page="Create">Create New Unit</a>
+</p>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Unit[0].Customer)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Unit[0].Building)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Unit[0].Rate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Unit[0].UnitCode)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Unit) {
+        <tr>
+            <td>
+                <a asp-page="/Customers/Details" asp-route-id="@item.Customer.Id">@Html.DisplayFor(modelItem => item.Customer.Name)</a>
+            </td>
+            <td>
+                <a asp-page="/Buildings/Details" asp-route-id="@item.Building.Id">@Html.DisplayFor(modelItem => item.Building.Name)</a>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Rate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UnitCode)
+            </td>
+            <td>
+                <a class="btn btn-sm btn-primary"asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
+                <a class="btn btn-sm btn-outline-danger"asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
